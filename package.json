@@ -4,16 +4,34 @@
   "description": "A death capsule Node.js app using [Express](http://expressjs.com/).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "prod": "node index.js --ENV production",
+    "dev": "node-dev index.js --ENV development",
+    "devcluster": "nodemon index.js --ENV development --CLUSTERED true",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node --inspect index.js"
+  },
+  "engines": {
+    "node": "8.4.0"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/death-capsule/death-capsule-backend.git"
   },
-  "author": "",
+  "author": "Death-Master",
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/death-capsule/death-capsule-backend/issues"
   },
-  "homepage": "https://gitlab.com/death-capsule/death-capsule-backend#readme"
+  "homepage": "https://gitlab.com/death-capsule/death-capsule-backend#readme",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "express-winston": "2.4.0",
+    "minimist": "1.2.0",
+    "mongoose": "4.13.20",
+    "winston": "2.3.1",
+    "winston-daily-rotate-file": "1.4.6"
+  }
 }

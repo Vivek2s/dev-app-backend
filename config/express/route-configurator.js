@@ -36,8 +36,6 @@ exports.initializeRouter = function (routes, version) {
     const router = express.Router();
 
     routes.forEach(route => {
-
-        console.log(route)
         if (!ensureFunctionHandlers(route.handlers))
             throw _err.createError(
                 'HANDLER_TYPE_NOT_SUPPORTED', 

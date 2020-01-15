@@ -1,6 +1,6 @@
 "use strict";
 
-const base = require('../../resources/base/v1/base-controller');
+const base = require('../../resources/v1/base/base-controller');
 
 const API_ROUTES = [
 	{ path: '', method: 'GET', handlers: [ base.index ] }

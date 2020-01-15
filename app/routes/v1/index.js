@@ -2,7 +2,7 @@
 
 const routes = [
     ...require('./base'),
-    ...require('../../resources/users/v1/user-route')
+    ...require('../../resources/v1/user/user-route')
 ]
 
 module.exports = routes;

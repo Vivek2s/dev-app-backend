@@ -7,7 +7,6 @@ module.exports = {
 
     async getUserDetails(req, res){
         try{
-            console.log('...............testttttttttttttttt')
             response.ok(res, {user: true});
         }catch(error){
             response.error(res, error);

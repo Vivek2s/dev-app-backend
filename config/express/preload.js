@@ -6,22 +6,26 @@ const env = require('../environments');
 const { logger } = require('../logger');
 
 module.exports = (version) => {
-    logger.info(`Preloading api files for api ${version}`);
-	// Bootstrap schemas
-	const schemas = `${env.ROOT_DIR}/app/models/${version}/schemas`;
-	fs.readdirSync(schemas)
-		.filter(file => ~file.search(/^[^\.].*\.js$/))
-		.forEach(file => require(join(schemas, file)));
+	logger.info(`Preloading api files for api ${version}`);
+	
+	let resourceFolderPath = `${env.ROOT_DIR}/app/${env.RESOURCE_FOLDER}/${version}`;
+	fs.readdirSync(resourceFolderPath)
+		.forEach( (folder)=>{
+			const resourcePath = join(resourceFolderPath, folder);
 
-	// Bootstrap models
-	const models = `${env.ROOT_DIR}/app/models/${version}`;
-	fs.readdirSync(models)
-		.filter(file => ~file.search(/^[^\.].*\.js$/))
-		.forEach(file => require(join(models, file)));
+			// Bootstrap schemas
+			fs.readdirSync(resourcePath)
+			.filter(file => ~file.search(/^[^\.].*-schema\.js$/))
+			.forEach(file => require(join(resourcePath, file)));
+		
+			// Bootstrap models
+			fs.readdirSync(resourcePath)
+			.filter(file => ~file.search(/^[^\.].*-model\.js$/))
+			.forEach(file => require(join(resourcePath, file)));
 
-	// Register events
-    const events = `${env.ROOT_DIR}/app/events/${version}`;
-    fs.readdirSync(events)
-        .filter(file => ~file.search(/^[^\.].*\.js$/))
-        .forEach(file => require(join(events, file)));
+			// Register events
+			// fs.readdirSync(resourcePath)
+			// .filter(file => ~file.search(/^[^\.].*\.js$/))
+			// .forEach(file => require(join(events, file)));	
+	})
 };

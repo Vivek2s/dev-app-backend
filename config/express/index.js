@@ -9,7 +9,7 @@ const { requestLogger } = require('../logger');
 const self = module.exports =   {
 
     preloadAPIFiles() {
-        // ACTIVE_APIS.forEach(version => preload(version));
+        ACTIVE_APIS.forEach(version => preload(version));
         return self;
     },
 

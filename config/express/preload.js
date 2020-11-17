@@ -28,4 +28,15 @@ module.exports = (version) => {
 			// .filter(file => ~file.search(/^[^\.].*\.js$/))
 			// .forEach(file => require(join(events, file)));	
 	})
+
+	const schemas = `${env.ROOT_DIR}/app/models/schemas`;
+	fs.readdirSync(schemas)
+		.filter(file => ~file.search(/^[^\.].*\.js$/))
+		.forEach(file => require(join(schemas, file)));
+
+	// Bootstrap models
+	const models = `${env.ROOT_DIR}/app/models`;
+	fs.readdirSync(models)
+		.filter(file => ~file.search(/^[^\.].*\.js$/))
+		.forEach(file => require(join(models, file)));
 };

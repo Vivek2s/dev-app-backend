@@ -19,3 +19,10 @@ exports.DB_OPTIONS = {
 
 exports.ACTIVE_APIS = process.env.ACTIVE_APIS;
 exports.RESOURCE_FOLDER = process.env.RESOURCE_FOLDER || 'resources';
+exports.ADMIN_LOGIN = process.env.ADMIN_LOGIN;
+
+exports.ACCESS_EXPIRATION = process.env.ACCESS_EXPIRATION;
+exports.REFRESH_EXPIRATION = process.env.REFRESH_EXPIRATION;
+exports.HASH_EXPIRATION = process.env.HASH_EXPIRATION;
+exports.SECRET = process.env.SECRET;
+exports.ISSUER = process.env.ISSUER;

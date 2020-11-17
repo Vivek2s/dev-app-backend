@@ -6,6 +6,10 @@ expressConfig.preloadAPIFiles();
 
 const { getConfiguredRouters } = require('./express/route-configurator');
 
+const passport = require('passport');
+const auth = require('./auth')
+
+
 module.exports = (app)=>{
     
     const ACTIVE_ROUTERS = getConfiguredRouters();
@@ -13,4 +17,11 @@ module.exports = (app)=>{
     expressConfig
         .setupApp(app)
         .setupRouters(app, ACTIVE_ROUTERS)
+    
+    auth
+        .initializeOauthServer(ACTIVE_ROUTERS)
+        .configure({
+            name: 'passport',
+            driver: passport
+        })
 }

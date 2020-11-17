@@ -1,5 +1,6 @@
 'use strict'
 
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const preload = require('./preload');
@@ -14,6 +15,7 @@ const self = module.exports =   {
     },
 
     setupApp (app) {
+        app.use(cors());
         app.disable('x-powered-by');
         app.set('env', process.env.ENV);
         app.use(requestLogger);

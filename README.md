@@ -33,6 +33,8 @@ Request body: {
 ```
 
 For Signup & Login, Authorization:
+```
 Type: Basic Auth
 username: devapp
 password: {client secret}
+```

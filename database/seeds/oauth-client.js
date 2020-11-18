@@ -11,9 +11,9 @@ module.exports = {
 		if (!admin) 
             throw "Admin user not in DB";
 
-        let unirelyClient = await OauthClient.findOne({ 'user_id': admin._id });
+        let oauthClient = await OauthClient.findOne({ 'user_id': admin._id });
 
-        if (unirelyClient || !admin) return;
+        if (oauthClient || !admin) return;
 
         let secret  = await _hashHelper.generateSecret([ admin._id, 'Web App' ]);
 

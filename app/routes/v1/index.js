@@ -2,7 +2,7 @@
 
 const routes = [
     ...require('./base'),
-    ...require('../../resources/v1/user/user-route'),
+    ...require('./user'),
     ...require('./oauth')
 ]
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const root = require('../resources/root');
+const root = require('../controllers/root');
 
 const API_ROUTES = [
 	{ path: '', method: 'GET', handlers: [ root.index ] },

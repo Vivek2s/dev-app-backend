@@ -1,6 +1,6 @@
 'use strict';
 
-const userController = require('./user-controller');
+const userController = require('./../../controllers/v1/user');
 
 const USER_ROUTES = [
 	{ path: '/user', method: 'GET', handlers: [ userController.getUserDetails ] },

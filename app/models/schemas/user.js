@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const _hash = require('./../../../shared/helpers/hash');
+const _hash = require('./../../shared/helpers/hash');
 
 const UserSchema = new Schema(
     {

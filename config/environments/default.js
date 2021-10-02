@@ -3,6 +3,7 @@
 const join = require('path').join;
 
 exports.ROOT_DIR = join(__dirname, '../..');
+exports.PROJECT_NAME = process.env.PROJECT_NAME || 'Project';
 
 exports.NODE_ENV = process.env.ENV;
 exports.CLUSTERED = process.env.CLUSTERED;
@@ -18,7 +19,7 @@ exports.DB_OPTIONS = {
 };
 
 exports.ACTIVE_APIS = process.env.ACTIVE_APIS;
-exports.RESOURCE_FOLDER = process.env.RESOURCE_FOLDER || 'resources';
+exports.RESOURCE_FOLDER = process.env.RESOURCE_FOLDER || 'controllers';
 exports.ADMIN_LOGIN = process.env.ADMIN_LOGIN;
 
 exports.ACCESS_EXPIRATION = process.env.ACCESS_EXPIRATION;

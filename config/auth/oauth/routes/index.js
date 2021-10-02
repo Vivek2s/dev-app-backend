@@ -1,6 +1,6 @@
 "use strict";
 
-const oauth = require('../../../../app/resources/v1/oauth');
+const oauth = require('../../../../app/controllers/v1/oauth');
 const isAuthenticated = require('../../../../app/shared/middlewares/isAuthenticated');
 
 const setupOauthEndpoints = (routers, server) => {

@@ -1,7 +1,7 @@
 'use strict'
 
-const _err = require('./../../../shared/helpers/error');
-const response = require("./../../../shared/middlewares/response");
+const _err = require('../../shared/helpers/error');
+const response = require("../../shared/middlewares/response");
 
 module.exports = {
 

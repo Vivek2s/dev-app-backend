@@ -8,6 +8,7 @@ const { logger } = require('../logger');
 module.exports = (version) => {
 	logger.info(`Preloading api files for api ${version}`);
 	
+	/* For Resource Structure
 	let resourceFolderPath = `${env.ROOT_DIR}/app/${env.RESOURCE_FOLDER}/${version}`;
 	fs.readdirSync(resourceFolderPath)
 		.forEach( (folder)=>{
@@ -28,6 +29,7 @@ module.exports = (version) => {
 			// .filter(file => ~file.search(/^[^\.].*\.js$/))
 			// .forEach(file => require(join(events, file)));	
 	})
+	*/
 
 	const schemas = `${env.ROOT_DIR}/app/models/schemas`;
 	fs.readdirSync(schemas)

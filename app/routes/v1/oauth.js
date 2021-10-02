@@ -1,6 +1,6 @@
 "use strict";
 
-const oauth = require("../../resources/v1/oauth");
+const oauth = require("../../controllers/v1/oauth");
 const isAuthenticated = require("../../shared/middlewares/isAuthenticated")
 // Login and register routes are in config/auth/oauth/routes
 module.exports = [

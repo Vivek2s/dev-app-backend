@@ -6,9 +6,10 @@ expressConfig.preloadAPIFiles();
 
 const { getConfiguredRouters } = require('./express/route-configurator');
 
-const passport = require('passport');
+//const passport = require('passport');
 const auth = require('./auth')
 
+const passport = require('./auth/passport/strategies/saml');
 
 module.exports = (app)=>{
     
@@ -18,10 +19,10 @@ module.exports = (app)=>{
         .setupApp(app)
         .setupRouters(app, ACTIVE_ROUTERS)
     
-    auth
-        .initializeOauthServer(ACTIVE_ROUTERS)
-        .configure({
-            name: 'passport',
-            driver: passport
-        })
+    // auth
+    //     .initializeOauthServer(ACTIVE_ROUTERS)
+    //     .configure({
+    //         name: 'passport',
+    //         driver: passport
+    //     })
 }

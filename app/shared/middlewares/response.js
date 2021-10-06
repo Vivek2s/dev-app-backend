@@ -42,7 +42,7 @@ module.exports = {
   },
 
   error(res, err) {
-    res.status(err.status).send({
+    res.status(err.status || 400).send({
       error: {
         code: err.code,
         message: err.message,

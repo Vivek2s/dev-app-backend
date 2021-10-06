@@ -19,6 +19,9 @@ const UserSchema = new Schema(
             required: true,
             set: _hashPassword
         },
+    },
+    {
+        timestamps: true
     }
 )
 

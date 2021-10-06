@@ -3,7 +3,9 @@
 const routes = [
     ...require('./base'),
     ...require('./user'),
-    ...require('./oauth')
+    ...require('./oauth'),
+    ...require('./query'),
+    ...require('./ipl-events')
 ]
 
 module.exports = routes;

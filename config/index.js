@@ -1,6 +1,8 @@
 'use strict';
 
 require('./db');
+require('./fork');
+
 const expressConfig = require('./express');
 expressConfig.preloadAPIFiles();
 

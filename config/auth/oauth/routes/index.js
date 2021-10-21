@@ -2,6 +2,7 @@
 
 const oauth = require('../../../../app/controllers/v1/oauth');
 const isAuthenticated = require('../../../../app/shared/middlewares/isAuthenticated');
+const isLoginValidate = require('../../../../app/shared/middlewares/isLoginValidate');
 
 const setupOauthEndpoints = (routers, server) => {
 	let _tokenMiddleWares = [];
@@ -15,6 +16,7 @@ const setupOauthEndpoints = (routers, server) => {
 
 	const _loginMiddleWares = _tokenMiddleWares = [
 		isAuthenticated('client'),
+		isLoginValidate,
 		server.token(),
 		server.errorHandler()
 	];

@@ -11,12 +11,14 @@ const OauthToken = mongoose.model('OauthToken');
 const _token = require('./../../../../app/shared/helpers/token'); 
 const _userValidator = require('../../../../app/shared/helpers/user');
 
+const _err = require('./../../../../app/shared/helpers/error');
+
 const _postClientValidate = async (client, username, password, scope, payload, done) => {
 
 	try {
 		let remember_me = payload.remember_me ? payload.remember_me : false;
 		username = username.trim().toLowerCase();
-		let user = await User.findOne({ 'email' : username }).populate('roles').lean(); 
+		let user = await User.findOne({ 'email' : username }).lean(); 
 	
 		if(_userValidator.isValidUser(user)){ 
 			
@@ -40,7 +42,13 @@ const _postClientValidate = async (client, username, password, scope, payload, d
 
 				let tokens = _token.generateTokens(data, scope, tokenMetas, true, remember_me);
 
-				await OauthToken.saveTokens(user, client, tokens, scope, OauthToken);
+				let oauthToken = await OauthToken.saveTokens(user, client, tokens, scope, OauthToken);
+
+				if(oauthToken){
+					let tokenCount = await OauthToken.find().count();
+					if(tokenCount%5 == 0)
+					throw _err.createError('BAD_REQUEST', 'Login is barred')
+				}
 
 				return done (
 					null,

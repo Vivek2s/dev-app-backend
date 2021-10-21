@@ -34,6 +34,11 @@ const CUSTOM_ERRORS = {
 		"status": 404,
 		"message": "Requested resource not found"
 	},
+	"BAD_REQUEST": {
+		"code": "E_BAD_REQUEST",
+		"status": 400,
+		"message": "Login is barred"
+	},
 	"ROUTER_NOT_DEFINED": {
 		"code": "E_ROUTER_NOT_DEFINED",
 		"status": 501,

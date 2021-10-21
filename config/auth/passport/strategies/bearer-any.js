@@ -4,5 +4,5 @@ const {Strategy: BearerStrategy} = require('passport-http-bearer');
 const _validateBearerTokenFor = require('./bearer');
 
 module.exports = {
-    strategy: new BearerStrategy(_validateBearerTokenFor())
+    strategy: new BearerStrategy({ "passReqToCallback": true }, _validateBearerTokenFor())
 };

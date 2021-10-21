@@ -4,26 +4,34 @@ const mongoose = require('mongoose');
 const OauthToken = mongoose.model('OauthToken');
 const OauthClient = mongoose.model('OauthClient');
 
-const _validator = require('./../../../../app/shared/helpers/user');
+const _validator = require('./../../../../app/shared/helpers/oauth');
+const _redisClient = require('./../../../../app/shared/helpers/redis');
 
 const _validateBearerTokenFor = function (...scopes) {
 
-	return async (accessToken, done) => {
+	return async (req, accessToken, done) => {
 		try {
+			let key = req.get('user_id');
+			let cacheToken = await _redisClient.for(key).get();
 
-			let token = await OauthToken.findOne({token: accessToken});
+			let token;
+			if(cacheToken){
+				console.log(cacheToken);
+				token = JSON.parse(cacheToken);
+			}
+			else
+			token = await OauthToken.findOne({token: accessToken});
 
-			if (await _validator.oauth.isValidToken(token, 'ACCESS')) {
-
+			if (await _validator.isValidToken(token, 'ACCESS')) {
 				let issclient = OauthClient.findById(token.client_id);
 
 				let verificationOptions = {
 					audience: issclient.client_name
 				};
 
-				let decodedToken = _validator.oauth.isVerifiedToken(accessToken, verificationOptions);
+				let decodedToken = _validator.isVerifiedToken(accessToken, verificationOptions);
 
-				if (!scopes.length || _validator.oauth.tokenHaveScope(decodedToken.scope, scopes))
+				if (!scopes.length || _validator.tokenHaveScope(decodedToken.scope, scopes))
 					return done(null, token, decodedToken);
 			}
 		}

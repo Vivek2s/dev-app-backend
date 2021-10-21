@@ -26,6 +26,7 @@
   "homepage": "https://gitlab.com/death-capsule/death-capsule-backend#readme",
   "dependencies": {
     "bcrypt": "^3.0.0",
+    "bluebird": "^3.7.2",
     "cors": "2.8.4",
     "dotenv": "8.2.0",
     "express": "4.17.1",
@@ -42,6 +43,7 @@
     "passport-local": "1.0.0",
     "passport-oauth2": "1.4.0",
     "passport-oauth2-client-password": "0.1.2",
+    "redis": "^3.1.2",
     "winston": "2.3.1",
     "winston-daily-rotate-file": "1.4.6"
   }

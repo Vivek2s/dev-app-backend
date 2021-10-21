@@ -47,6 +47,7 @@ const self = module.exports = {
 
 	async isValidToken (token, type) {
 		try {
+			console.log(token, type, token.type)
 			if (!token)
 				throw new Error;
 

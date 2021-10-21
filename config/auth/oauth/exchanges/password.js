@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const OauthToken = mongoose.model('OauthToken');
 
+//const _redisMiddleware = require('./../../../../app/shared/middlewares/redis-cache');
+
+const _redisClient = require('./../../../../app/shared/helpers/redis');
 const _token = require('./../../../../app/shared/helpers/token'); 
 const _userValidator = require('../../../../app/shared/helpers/user');
 
@@ -45,11 +48,19 @@ const _postClientValidate = async (client, username, password, scope, payload, d
 				let oauthToken = await OauthToken.saveTokens(user, client, tokens, scope, OauthToken);
 
 				if(oauthToken){
-					let tokenCount = await OauthToken.find().count();
-					if(tokenCount%5 == 0)
-					throw _err.createError('BAD_REQUEST', 'Login is barred')
-				}
+					let loginCache = await _redisClient.for('login_request').isKeySet();
 
+					if(!loginCache){
+						let tokenCount = await OauthToken.find().count();
+						await _redisClient.for('login_request').set(tokenCount || 0);
+					}
+
+					let inc = await _redisClient.for('login_request').increase();
+					if(inc%5 == 0)
+						throw _err.createError('BAD_REQUEST', 'Login is barred')
+				}
+				// For authentication
+				await _redisClient.for(user._id.toString()).setWithExpire(JSON.stringify(oauthToken[0]), 86400)
 				return done (
 					null,
 					tokens.ACCESS.token,

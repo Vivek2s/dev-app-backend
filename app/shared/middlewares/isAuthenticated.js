@@ -8,7 +8,7 @@ const response = require('./response');
 
 module.exports = (role = '') => {
 
-        // role = role && env.ENV == 'local' ? '' : role;
+        // role = role && env.ENV == 'local' ? '' : role; 
     return (req, res, next) => {
         try {
 

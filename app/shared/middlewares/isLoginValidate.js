@@ -12,7 +12,7 @@ module.exports = async(req, res, next)=>{
             next();
         }
         else{
-            throw _err.createError('BAD_REQUEST', 'Login Validation failed');
+            throw _err.createError('BAD_REQUEST', '3rd party login validation failed');
         }
     }catch(err){
         response.error(res, err);

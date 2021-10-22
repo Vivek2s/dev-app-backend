@@ -11,14 +11,17 @@ git clone git@github.com:Vivek2s/dev-app-backend.git # or clone your own fork
 cd dev-app-backend
 npm install
 npm start
+
+Replace .env.sample to .env file
 ```
 
 Your app should now be running on [localhost:4000](http://localhost:4000/).
 
-POSTMAN Link: [Link](https://www.getpostman.com/collections/af5e5434590e01744766)
+POSTMAN Link: [Link](https://www.getpostman.com/collections/2414368a19acd1c7581d)
 API v1: http://localhost:4000/api/v1
 
-In Postman, Steps to follow:
+Skip this Steps, if you use same mogodb string present in .env
+In Postman, Steps to follow( only if connect with new database):
 
 Step 1. Request: Basic Seed Date. 
 
